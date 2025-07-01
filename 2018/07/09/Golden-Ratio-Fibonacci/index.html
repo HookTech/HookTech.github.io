@@ -1,37 +1,712 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="生活有点无聊…记点好玩的   引子初中时代知道了Golden Ration，从数学老师那里第一次知道时，感觉很有趣的样子，于是在纸上推啊推，好奇为啥值是0.618呢？后来用换元法最终搞出，那个开心啊&lt;(￣︶￣)&gt;，感觉数学神奇啊 高中时代无聊，有次捣腾Fibonacci数列，都说这是神奇的数列。于是自己看看有没有好玩的性质，于是让前面的数字除以后面的数字，1&#x2F;1;1&#x2F;2;&#x2F;2&#x2F;3;3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golden Ratio &amp; Fibonacci">
+<meta property="og:url" content="http://yoursite.com/2018/07/09/Golden-Ratio-Fibonacci/index.html">
+<meta property="og:site_name" content="shell of truth">
+<meta property="og:description" content="生活有点无聊…记点好玩的   引子初中时代知道了Golden Ration，从数学老师那里第一次知道时，感觉很有趣的样子，于是在纸上推啊推，好奇为啥值是0.618呢？后来用换元法最终搞出，那个开心啊&lt;(￣︶￣)&gt;，感觉数学神奇啊 高中时代无聊，有次捣腾Fibonacci数列，都说这是神奇的数列。于是自己看看有没有好玩的性质，于是让前面的数字除以后面的数字，1&#x2F;1;1&#x2F;2;&#x2F;2&#x2F;3;3">
+<meta property="og:locale">
+<meta property="og:image" content="https://mpng.subpng.com/20181125/zkt/kisspng-pinwheel-tiling-square-root-of-5-triangle-tessella-archivopinwheel-1-svg-wikipedia-la-enciclopedi-5bfaea319ae895.9849251715431706096345.jpg">
+<meta property="og:image" content="https://plus.maths.org/content/sites/plus.maths.org/files/articles/2020/myths/geogebra-export.png">
+<meta property="og:image" content="https://www.thefamouspeople.com/profiles/thumbs/leonardo-fibonacci-1.jpg">
+<meta property="article:published_time" content="2018-07-09T00:43:18.000Z">
+<meta property="article:modified_time" content="2022-03-12T07:32:53.000Z">
+<meta property="article:author" content="philo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mpng.subpng.com/20181125/zkt/kisspng-pinwheel-tiling-square-root-of-5-triangle-tessella-archivopinwheel-1-svg-wikipedia-la-enciclopedi-5bfaea319ae895.9849251715431706096345.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/09/Golden-Ratio-Fibonacci/"/>
+
+
+
+
+
+  <title>Golden Ratio & Fibonacci | shell of truth</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/custom_css_source.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shell of truth</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/Golden-Ratio-Fibonacci/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shell of truth">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Golden Ratio & Fibonacci</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T08:43:18+08:00">
+                2018-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>生活有点无聊…记点好玩的</p>
+</blockquote>
+<hr>
+<h3 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h3><p>初中时代知道了Golden Ration，从数学老师那里第一次知道时，感觉很有趣的样子，于是在纸上推啊推，好奇为啥值是0.618呢？后来用换元法最终搞出，那个开心啊&lt;(￣︶￣)&gt;，感觉数学神奇啊</p>
+<p>高中时代无聊，有次捣腾Fibonacci数列，都说这是神奇的数列。于是自己看看有没有好玩的性质，于是让前面的数字除以后面的数字，1/1;1/2;/2/3;3/5;/5/8…等等，数值怎么不对，8/13;13/21，我去，好像是0.618！再继续，21/34;34/55，我擦，竟然真的是0.618这货，而且越往后越是Golden Ration！！什么情况，难道两者之间有不可描述的关系？(<em>ﾟДﾟ</em>) ，在震惊的同时开始各种推，咳咳，但是以当时的阅历，当然并不知道这里面的水有多深，数学原理是啥…于是不了了之</p>
+<p>于是荒废到了工作时代…Times fly and people start to die…</p>
+<p>终于有一天，出来混的都还上了…不废话，正题了</p>
+<h3 id="Golden-Ration"><a href="#Golden-Ration" class="headerlink" title="Golden Ration"></a>Golden Ration</h3><script type="math/tex; mode=display">\frac{2}{1 + \sqrt{5}}\approx0.618\quad\Leftrightarrow\quad\frac{1 + \sqrt{5}}{2}\approx 1.618</script><p>这两货相比大部分人都知道，传说中的黄金分割嘛，为啥起这名儿，也许是因为漂亮的妹子颜值的黄金比吧╮(￣▽￣)╭。也不知道为什么造物主喜欢这样设计，反正只知道整容的都喜欢按这比例动刀…呵呵，说真格的，反正从有机生物到无机结构，很多存在都内含该比例。<br>得，来两张图吧！<br>还记得曾经的图么<br><img src="https://mpng.subpng.com/20181125/zkt/kisspng-pinwheel-tiling-square-root-of-5-triangle-tessella-archivopinwheel-1-svg-wikipedia-la-enciclopedi-5bfaea319ae895.9849251715431706096345.jpg" alt="数学老师我没忘喔"><br>再来张人体图吧(･ิω･ิ)<br><img src="https://plus.maths.org/content/sites/plus.maths.org/files/articles/2020/myths/geogebra-export.png" alt="妹子们不用看中间"></p>
+<p>至于值的证明，用换元法把定义的等式处理下，可以得到二次方程</p>
+<script type="math/tex; mode=display">\varphi = 1 + \frac{1}{\varphi}</script><p>其中一根就是1.618，开心吧，另一根后面会有伏笔<br>好了，正题刚刚开始…</p>
+<h3 id="Fibonacci"><a href="#Fibonacci" class="headerlink" title="Fibonacci"></a>Fibonacci</h3><p>先镇个楼<br><img src="https://www.thefamouspeople.com/profiles/thumbs/leonardo-fibonacci-1.jpg" alt="Fibonacci -- Italian Mathematician"></p>
+<p>数列长这样的，大家都懂</p>
+<script type="math/tex; mode=display">1,1,2,3,5,8,13,21,34,55,89,144,233,377</script><p>等等，不觉得这货增长很快么，那么有多快呢？如果高中的猜测是对的话，后面相邻两数的比值越来越接近黄金比，那么这可是$O(c^{n})$指数级增长啊，1000的话地球都要爆炸了…</p>
+<p>为啥这么快呢?<br>好了，严肃的要开始了，我也要开始还数学债了，非战斗人员可以跳过推导看思想就行</p>
+<hr>
+<p>Fibonacci数列定义是这样的：</p>
+<script type="math/tex; mode=display">\textit{F}_{k + 2}=\textit{F}_{k + 1} + \textit{F}_{k}\\\left\{\textit{F}_{0}=1\right\}\quad\left\{\textit{F}_{1}=1\right\}</script><p>递推式，怎么搞呢，不是通项式，有办法转化为通项表示吗？这样不就知道后项与前项的关系了吗？</p>
+<blockquote>
+<p><em>注：</em><br><em>1. 后面推导的仅是证明思路中的一种</em><br><em>2. 最好有点线性代数基础</em></p>
+</blockquote>
+<p>既然是两项两项一起出现的，那么就一起来运算吧<br>先来个Naive but useful trick打头：</p>
+<script type="math/tex; mode=display">Set\quad \upsilon_{k}=\begin{pmatrix} \textit{F}_{k + 1}\\\textit{F}_{k}\end{pmatrix}(k\in N) \quad so \quad \upsilon_{0}=\begin{pmatrix} \textit{F}_{1}\\\textit{F}_{0}\end{pmatrix}\\ \\ then \quad \upsilon_{k + 1}=\begin{bmatrix}1 &1 \\1 &0 \end{bmatrix}\upsilon_{k}</script><p>重点出现了，矩阵，要开始玩矩阵了！这时什么“线性无关”、“空间基向量”、“行列式”、“特征向量与特征矩阵”等这些概念需要载入大脑内存了哈，忘了的赶紧谷哥度娘起来(￣.￣)</p>
+<p>再清晰一点</p>
+<script type="math/tex; mode=display">Suppose \quad A= \begin{bmatrix}1 &1 \\1 &0 \end{bmatrix} then\;we\;get \\ \\ \Rightarrow \qquad \upsilon_{k + 1}=A\upsilon_{k}</script><p>这里A有对应的含义么，如果Fibonacci相邻两项<script type="math/tex">\textit{F}_{k + 1}</script>和<script type="math/tex">\textit{F}_{k}</script>看成空间中的向量，那么<script type="math/tex">\upsilon_{k+1}</script>就是<script type="math/tex">\upsilon_{k}</script>在A变换下产生的向量，直观的看，这里是不是有点像简单的递推式了？</p>
+<p>关键就是这里，看清楚喔，变换矩阵A可是n维实对称阵啊，还记得线代上被虐过的定理吧：<strong>n阶实对称阵必存在n个实特征值和n个线性无关的特征向量，而且能被对角化</strong> 。<br>(啊，这啥意思啊？有用么，能当钱花，当饭吃么？额，同学你先坐下冷静下，好像现在AI时代是可以的哈)  (;￢＿￢)   </p>
+<p>回来再说，一般某矩阵如果能分解为特征值与特征向量来表示的话，那么恭喜你，你就能看到这个矩阵的本质了，毕竟起名都叫“特征”了(ﾟ▽ﾟ)/如果你再将某矩阵n个线性无关的特征向量组合起来形成空间的话（姑且称为特征矩阵吧），你就知道：<br><strong>矩阵A在物理上就变成了一种投影关系，表示将某个向量投影到A的特征矩阵代表的空间</strong>。<br>如果理解了这一点，上面的式子就像是从<script type="math/tex">\upsilon_{0}</script>开始，不断地被A向量进行着变换，但是不要慌，我们的推导不用这么抽象。</p>
+<p>A的特征向量和特征值先求起来吧，忘了的直接用python或matlab工具包愉快的求出来吧。这样你会愉悦地发现：<br><strong>特征值刚好就是两个黄金比例二次方程的两个根！</strong></p>
+<p>惊喜不惊喜，意外不意外!</p>
+<p>呵呵，其实没啥意外的，大道归一而且这篇软文就是讲这两者之间不可描述的关系的嘛，有见识，很聪明的同学已经开始在心里翻白眼了…没关系，继续来</p>
+<p>A的两个特征值是：<script type="math/tex">\lambda_{1}=\frac{1 + \sqrt{5}}{2}\approx1.618\quad\lambda_{2}=\frac{1 - \sqrt{5}}{2}\approx-0.618</script></p>
+<blockquote>
+<p>有点要记住啊，这里我们suppose绝对值大的那个特征值是<script type="math/tex">\lambda_{1}</script>，会看到后面有用的。</p>
+</blockquote>
+<p>A的两个特征值<script type="math/tex">\lambda_{1}</script>，<script type="math/tex">\lambda_{2}</script>分别对应特征向量为<script type="math/tex">\chi_{1}=\begin{pmatrix}\lambda_{1}\\1\end{pmatrix}</script>，<script type="math/tex">\chi_{2}=\begin{pmatrix}\lambda_{2}\\1\end{pmatrix}</script></p>
+<p>关键的Suppose来了：<br><strong>由于A的两个特征向量是线性无关的，我们就把这两货作为新2维空间的基，将<script type="math/tex">\upsilon_{0}</script>在这个空间中表示出来</strong></p>
+<script type="math/tex; mode=display">\upsilon_{0}=\begin{pmatrix} \textit{F}_{1}\\\textit{F}_{0}\end{pmatrix}=c_{1}\chi_{1}+c_{2}\chi_{2}=\begin{bmatrix}c_{1}\lambda{1}+c_{2}\lambda{2}\\c_{1}+c_{2}\end{bmatrix}</script><p>如果再矩阵化的话是这样的</p>
+<script type="math/tex; mode=display">Suppose\quad S=\begin{bmatrix}\lambda_{1} &\lambda_{2} \\1 &1 \end{bmatrix} \quad and \quad C=\begin{bmatrix} c_{1}\\c_{2} \end{bmatrix} \\ \\ then \quad\upsilon_{0}=SC</script><p>这里S可以称为特征矩阵吧</p>
+<p>好戏来了!<br>根据之前Fibonacci的递推式<script type="math/tex">\upsilon_{k + 1}=A\upsilon_{k}</script>，我们可知:<script type="math/tex">\upsilon_{k}=A^{k}\upsilon_{0}</script>，而根据提过的对角化的优美性质(￣▽￣)~*，我们知道矩阵A是可以分解为(可以验证的):</p>
+<script type="math/tex; mode=display">A=S \Lambda S^{-1}\quad here \quad \Lambda = \begin{bmatrix}\lambda_{1} & 0\\0 &\lambda_{2} \end{bmatrix}</script><p>其中S就是上面的特征矩阵；又计算得知$A^{k}=S\Lambda^{k}S^{-1}$</p>
+<p>所以…铺垫这么多，终于可以推导了(这里详细一点)</p>
+<script type="math/tex; mode=display">\upsilon_{k}=A^{k}\upsilon_{0}=A^{k}SC=S\Lambda^{k}S^{-1}SC=S\Lambda^{k}C\\=\begin{bmatrix}\lambda_{1} &\lambda_{2} \\1 &1 \end{bmatrix}\begin{bmatrix}\lambda_{1}^{k} & 0\\0 &\lambda_{2}^{k} \end{bmatrix}\begin{bmatrix} c_{1}\\c_{2} \end{bmatrix}=\begin{bmatrix} c_{1}\lambda_{1}^{k+1} + c_{2}\lambda_{2}^{k+1}\\c_{1}\lambda_{1}^{k} + c_{2}\lambda_{2}^{k} \end{bmatrix}=\begin{bmatrix} \textit{F}_{k+1}\\\textit{F}_{k} \end{bmatrix}</script><p>这…这，我们想要的通项公式出来了啊!<br>先求出<script type="math/tex">c_{1}</script>，<script type="math/tex">c_{2}</script>吧</p>
+<script type="math/tex; mode=display">\upsilon_{0}=\begin{pmatrix} \textit{F}_{1}\\\textit{F}_{0}\end{pmatrix}=\begin{bmatrix}c_{1}\lambda{1}+c_{2}\lambda{2}\\c_{1}+c_{2}\end{bmatrix}=\begin{pmatrix}1\\1\end{pmatrix}\Rightarrow c_{1}=\frac{1-\lambda_{2}}{\lambda_{1}-\lambda_{2}}, c_{2}=\frac{\lambda_{1}-1}{\lambda_{1}-\lambda_{2}}</script><p>最终通项式就是：<script type="math/tex">\textit{F}_{k}=\frac{1-\lambda_{2}}{\lambda_{1}-\lambda_{2}}\lambda_{1}^{k} + \frac{\lambda_{1}-1}{\lambda_{1}-\lambda_{2}}\lambda_{2}^{k}</script></p>
+<p>知道通项式后终于可以知道Fibonacci数列为什么是按黄金率增长了…</p>
+<script type="math/tex; mode=display">\frac{\textit{F}_{k+1}}{\textit{F}_{k}}=\frac{c_{1}\lambda_{1}^{k+1} + c_{2}\lambda_{2}^{k+1}}{c_{1}\lambda_{1}^{k} + c_{2}\lambda_{2}^{k}}\approx\lambda_{1}\\Consider \quad \left | \lambda_{1} \right | > 1 \quad and \quad \left | \lambda_{2} \right | < 1 \quad when \quad k \to \infty</script><p>这里负值根也是有用的喔，用于收敛趋于0…</p>
+<p>有耐心看到这的童鞋有福了，LZ累死了，码这么多公式</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Golden-Ration"><span class="nav-number">2.</span> <span class="nav-text">Golden Ration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fibonacci"><span class="nav-number">3.</span> <span class="nav-text">Fibonacci</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">philo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
