@@ -1,20 +1,6 @@
 User-agent: *
 Allow: /
 
-# 禁止访问管理页面
-Disallow: /admin/
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-
-# 允许访问静态资源
-Allow: /css/
-Allow: /js/
-Allow: /img/
-Allow: /images/
-
 # 网站地图
 Sitemap: https://hooktech.github.io/sitemap.xml
-Sitemap: https://hooktech.github.io/baidusitemap.xml
-
-# 爬取延迟（秒）
-Crawl-delay: 1 
+Sitemap: https://hooktech.github.io/baidusitemap.xml 
