@@ -10,7 +10,6 @@ const DYNAMIC_CACHE = 'philo-dynamic-v1.0.0';
 // 需要缓存的静态资源
 const STATIC_ASSETS = [
     '/',
-    '/about/',
     '/css/main.css',
     '/css/custom-animations.css',
     '/css/homepage-enhancements.css',
@@ -164,8 +163,7 @@ function isDynamicAsset(url) {
            url.includes('/categories/') ||
            url.includes('/tags/') ||
            url.includes('/2025/') ||
-           url.includes('/2018/') ||
-           url.includes('/about/');
+           url.includes('/2018/');
 }
 
 // 消息处理 - 手动更新缓存
