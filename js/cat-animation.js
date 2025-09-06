@@ -9,10 +9,19 @@
         container.className = 'cat-container';
         document.body.appendChild(container);
 
-        // Create cat
+        // Create cat (罗小黑战记风格)
         const cat = document.createElement('div');
         cat.className = 'cat';
-        cat.innerHTML = '<div class="eye left"></div><div class="eye right"></div><div class="nose"></div><div class="mouth"></div><div class="tail"></div>';
+        cat.innerHTML = `
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="nose"></div>
+            <div class="mouth"></div>
+            <div class="tail"></div>
+            <div class="spot spot1"></div>
+            <div class="spot spot2"></div>
+            <div class="spot spot3"></div>
+        `;
         container.appendChild(cat);
 
         // Cat state
