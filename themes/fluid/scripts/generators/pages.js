@@ -51,5 +51,11 @@ hexo.extend.generator.register('_links', function(locals) {
   }
 });
 
+// generate about page (disabled)
+hexo.extend.generator.register('_about', function(locals) {
+  // 禁用 about 页面生成
+  return null;
+});
+
 // generate index page
 hexo.extend.generator.register('index', require('./index-generator'));

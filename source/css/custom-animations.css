@@ -1,5 +1,12 @@
 /* 自定义动画效果 - Custom Animations */
 
+/* 隐藏技能专长区域 */
+h2[id*="技能专长"],
+.skills-container,
+.skill-card {
+    display: none !important;
+}
+
 /* 全局过渡效果 */
 * {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
