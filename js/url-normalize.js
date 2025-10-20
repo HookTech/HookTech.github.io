@@ -1,0 +1,1 @@
+!function(){try{var t=location.pathname;if([/^\/404\.html$/i,/^\/google[0-9a-f]+\.html$/i].some(function(a){return a.test(t)}))return;if(t.endsWith("/index.html")){var a=t.slice(0,-11)||"/";return void location.replace(a+location.search+location.hash)}if(/\.html$/i.test(t)){var i=t.replace(/\.html$/i,"");location.replace(i+"/"+location.search+location.hash)}}catch(t){}}();
