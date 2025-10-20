@@ -365,10 +365,8 @@
         });
     }
 
-    // 初始化所有效果
+    // 初始化所有效果（保持简洁，移除高对比加载层与鼠标跟随）
     initPostCardEffects();
     initImageLazyLoading();
-    initMouseFollower();
-    initPageLoader();
 
 })();

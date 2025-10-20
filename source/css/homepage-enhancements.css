@@ -13,7 +13,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(255,107,107,0.1), rgba(78,205,196,0.1));
+  background: linear-gradient(45deg, rgba(37,99,235,0.10), rgba(37,99,235,0.06));
   animation: bannerGlow 8s ease-in-out infinite;
   z-index: 1;
 }
@@ -49,8 +49,8 @@
 }
 
 .post-item-enhanced:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.12);
 }
 
 /* 分类标签增强 */
@@ -58,7 +58,7 @@
   position: relative;
   display: inline-block;
   padding: 0.3rem 0.8rem;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: var(--accent-600);
   color: white;
   border-radius: 20px;
   font-size: 0.8rem;
@@ -140,20 +140,20 @@
 }
 
 .pagination-enhanced .page-link:hover {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: var(--accent-600);
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .pagination-enhanced .page-item.active .page-link {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: var(--accent-600);
   color: white;
 }
 
 /* 页脚增强 */
 .footer-enhanced {
-  background: linear-gradient(135deg, #2c3e50, #34495e);
+  background: linear-gradient(135deg, #0f172a, #1f2937);
   color: white;
   position: relative;
   overflow: hidden;
@@ -194,7 +194,7 @@
   right: 30px;
   width: 50px;
   height: 50px;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: var(--accent-600);
   color: white;
   border: none;
   border-radius: 50%;

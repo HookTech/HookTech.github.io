@@ -7,21 +7,21 @@ h2[id*="技能专长"],
     display: none !important;
 }
 
-/* 全局过渡效果 */
-* {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* 全局过渡效果（限制范围以提升性能） */
+:where(a, button, .post-card, .card, .post-item, .page-link, img, .navbar) {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 卡片悬停效果 */
 .post-card, .card, .post-item {
   transform: translateY(0);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-  opacity: 0.95;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+  opacity: 0.98;
 }
 
 .post-card:hover, .card:hover, .post-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
   opacity: 1;
 }
 
@@ -46,9 +46,9 @@ h2[id*="技能专长"],
 
 /* 动态背景效果 */
 .animated-bg {
-  background: linear-gradient(-45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+  background: linear-gradient(-45deg, #f8fafc, #f1f5f9, #f8fafc, #f1f5f9);
+  background-size: 300% 300%;
+  animation: gradientShift 24s ease infinite;
 }
 
 @keyframes gradientShift {
@@ -61,7 +61,7 @@ h2[id*="技能专长"],
 .skill-bar {
   width: 0%;
   height: 8px;
-  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  background: var(--accent-600);
   border-radius: 4px;
   transition: width 1.5s ease;
   position: relative;
@@ -87,7 +87,7 @@ h2[id*="技能专长"],
 /* 数字计数动画 */
 .counter {
   font-weight: bold;
-  color: #ff6b6b;
+  color: var(--accent-600);
   font-size: 2em;
 }
 
@@ -129,7 +129,7 @@ h2[id*="技能专长"],
 }
 
 @keyframes blink {
-  0%, 50% { border-color: #ff6b6b; }
+  0%, 50% { border-color: var(--accent-600); }
   51%, 100% { border-color: transparent; }
 }
 
@@ -137,7 +137,7 @@ h2[id*="技能专长"],
 .btn-animated {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background: var(--accent-600);
   border: none;
   color: white;
   padding: 12px 24px;
@@ -148,7 +148,7 @@ h2[id*="技能专长"],
 
 .btn-animated:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 .btn-animated::before {
@@ -192,7 +192,7 @@ h2[id*="技能专长"],
   left: 0;
   width: 0%;
   height: 3px;
-  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  background: var(--accent-600);
   z-index: 9999;
   transition: width 0.1s ease;
 }
@@ -223,9 +223,9 @@ h2[id*="技能专长"],
 }
 
 [data-user-color-scheme="dark"] .skill-bar {
-  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  background: var(--accent-600);
 }
 
 [data-user-color-scheme="dark"] .counter {
-  color: #4ecdc4;
+  color: var(--accent-600);
 }

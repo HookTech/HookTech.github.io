@@ -52,12 +52,7 @@
                 element.style.transform = `translateY(${rate}px)`;
             });
 
-            // 导航栏背景透明度
-            const navbar = document.querySelector('.navbar');
-            if (navbar) {
-                const opacity = Math.min(scrolled / 100, 1);
-                navbar.style.background = `rgba(255, 255, 255, ${0.9 + opacity * 0.1})`;
-            }
+            // 导航栏背景透明度交由 CSS 处理（玻璃特效与滚动态样式），不在此处内联修改
 
             ticking = false;
         }
