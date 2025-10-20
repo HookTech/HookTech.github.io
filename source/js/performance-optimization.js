@@ -191,7 +191,8 @@
             'https://cdn.jsdelivr.net',
             'https://busuanzi.ibruce.info',
             'https://fonts.googleapis.com',
-            'https://fonts.gstatic.com'
+            'https://fonts.gstatic.com',
+            'https://at.alicdn.com'
         ];
 
         preconnectDomains.forEach(domain => {
@@ -219,6 +220,7 @@
             link.rel = 'preload';
             link.href = resource.href;
             link.as = resource.as;
+            link.crossOrigin = 'anonymous';
             document.head.appendChild(link);
         });
     }

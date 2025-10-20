@@ -6,3 +6,15 @@ node_modules/
 public/
 .deploy*/
 _config.yml
+*.md
+.tmp_loki/
+.npm-cache/
+.npmrc
+.playwright-mcp/
+.vscode/
+.cursor/
+.devcontainer/
+.github/
+.husky/
+.vscode/
+.vscode/
