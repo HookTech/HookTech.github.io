@@ -87,7 +87,40 @@ self.addEventListener('fetch', event => {
         return;
     }
     
-    // 缓存策略
+    // 图片优先使用 WebP 版本（若存在且浏览器支持）
+    if (request.method === 'GET' && request.destination === 'image') {
+        event.respondWith((async () => {
+            try {
+                const accept = request.headers.get('accept') || '';
+                const isConvertible = /\.(png|jpe?g)$/i.test(url.pathname);
+                if (accept.includes('image/webp') && isConvertible) {
+                    const webpURL = url.pathname.replace(/\.(png|jpe?g)$/i, '.webp') + url.search;
+                    const absolute = new URL(webpURL, location.origin).toString();
+                    const webpReq = new Request(absolute, { credentials: 'same-origin', mode: 'same-origin' });
+                    const cache = await caches.open(STATIC_CACHE);
+                    const cachedWebp = await cache.match(webpReq);
+                    if (cachedWebp) return cachedWebp;
+                    const resp = await fetch(webpReq);
+                    if (resp && resp.ok) {
+                        cache.put(webpReq, resp.clone());
+                        return resp;
+                    }
+                }
+            } catch (e) {
+                // ignore and fallback
+            }
+            // fallback to default handling below
+            const cache = await caches.open(STATIC_CACHE);
+            const cached = await cache.match(request);
+            if (cached) return cached;
+            const resp = await fetch(request);
+            if (resp && resp.ok) cache.put(request, resp.clone());
+            return resp;
+        })());
+        return;
+    }
+
+    // 其他请求的缓存策略
     if (request.method === 'GET') {
         event.respondWith(
             caches.match(request)

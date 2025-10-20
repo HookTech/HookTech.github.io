@@ -18,6 +18,7 @@
     "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^2.0.0",
     "hexo-inject": "^1.0.0",
+    "cwebp-bin": "^8.0.0",
     "hexo-clean-css": "^2.0.0",
     "hexo-uglify": "^2.0.0",
     "hexo-html-minifier": "^1.0.0",
