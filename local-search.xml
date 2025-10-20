@@ -4,6 +4,43 @@
   
   
   <entry>
+    <title>在 Dokploy 部署 Loki 日志平台（Promtail + MinIO + Nginx 网关）</title>
+    <link href="/2025/10/20/deploy-loki-on-dokploy/"/>
+    <url>/2025/10/20/deploy-loki-on-dokploy/</url>
+    
+    <content type="html"><![CDATA[<p>本文基于仓库 HookTech/loki 的近期改动，在 Dokploy 上用 Compose 部署 Loki 集群并接入 Docker 日志。</p><p>变更摘要（8e217b7 → 7d88b97）</p><ul><li>端口梳理：小服务统一改用 9003；MinIO 容器内回到 9000，对外映射 9003；Grafana 暴露 3300。</li><li>日志采集：采用 <code>promtail-docker.yaml</code>，挂载 <code>/var/run/docker.sock</code>，采集所有容器日志并补充 Docker labels。</li><li>网关：使用标准 Nginx 反代统一暴露 <code>/loki/*</code>，读写分流（read/write/back-end）。</li><li>认证：开启 Grafana 登录，关闭匿名访问。</li><li>其他：若干优化与配置整理。</li></ul><p>在 Dokploy 的部署步骤<br>1) 新建 Project 与 Compose 应用：在 Dokploy 面板中新建项目，创建 “Compose App”。<br>2) 粘贴 Compose：使用仓库的 <code>production/docker/docker-compose.yaml</code>（关键端口：Grafana 3300、Gateway 8080、Promtail 9080、MinIO 9003→9000）。<br>3) 卷与挂载：确保挂载以下目录（Dokploy 支持 Host Path）：</p><ul><li><code>.data/minio:/data</code>（MinIO 持久化）</li><li><code>./config:/etc/loki</code> 和 <code>./config:/etc/promtail</code></li><li><code>/var/run/docker.sock:/var/run/docker.sock:ro</code>（Promtail 采集所有容器）<br>4) 环境变量：Grafana 默认 <code>GF_SECURITY_ADMIN_USER=admin</code>、<code>GF_SECURITY_ADMIN_PASSWORD=admin</code>；MinIO <code>MINIO_ROOT_USER=loki</code>、<code>MINIO_ROOT_PASSWORD=supersecret</code>，按需改为强口令。<br>5) 暴露服务：</li><li>Grafana: <code>http://&lt;host&gt;:3300</code></li><li>Loki Gateway: <code>http://&lt;host&gt;:8080</code>（Push: <code>/loki/api/v1/push</code>）</li><li>MinIO Console: <code>http://&lt;host&gt;:9001</code>（S3 API: <code>http://&lt;host&gt;:9003</code> → 容器内 9000）</li></ul><p>Promtail 关键配置（片段）<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">clients:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">url:</span> <span class="hljs-string">http://loki-gateway:80/loki/api/v1/push</span><br><span class="hljs-attr">scrape_configs:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">job_name:</span> <span class="hljs-string">docker</span><br>    <span class="hljs-attr">docker_sd_configs:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">host:</span> <span class="hljs-string">unix:///var/run/docker.sock</span><br>        <span class="hljs-attr">refresh_interval:</span> <span class="hljs-string">5s</span><br>    <span class="hljs-attr">pipeline_stages:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">docker:</span> &#123;&#125;<br></code></pre></td></tr></table></figure></p><p>验证与排错</p><ul><li>访问 Grafana <code>http://&lt;host&gt;:3300</code> 使用管理员账户登录（文末变量）。已内置 datasource 指向 <code>loki-gateway</code>。</li><li>在 Explore 中查询：<code>&#123;job=&quot;docker&quot;&#125;</code> 即可看到容器日志。</li><li>若看不到日志，检查 Promtail 容器是否挂载了 Docker socket，或 <code>promtail-docker.yaml</code> 是否生效。</li></ul><p>小结<br>以上 Compose 方案在单机即可跑通 Loki 日志平台，并通过 Dokploy 实现一键上线。生产可将凭据放入 Dokploy Secrets，按需调整副本与资源限额。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Observability</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Loki</tag>
+      
+      <tag>Dokploy</tag>
+      
+      <tag>Promtail</tag>
+      
+      <tag>Grafana</tag>
+      
+      <tag>MinIO</tag>
+      
+      <tag>Nginx</tag>
+      
+      <tag>Docker</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Cursor-Usage</title>
     <link href="/2025/08/04/Cursor-Usage/"/>
     <url>/2025/08/04/Cursor-Usage/</url>
