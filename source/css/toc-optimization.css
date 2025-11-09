@@ -4,12 +4,22 @@
 #toc {
   background: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
   border-radius: 12px !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
   padding: 20px !important;
   margin: 20px 0 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 页面位于顶部（阅读进度接近 0）时，避免 TOC 出现明显“白块” */
+body.toc-at-top #toc {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* 目录标题样式 */
@@ -160,6 +170,15 @@ body.dark #toc .tocbot-link:hover {
 body.dark #toc .tocbot-link.tocbot-active-link {
   background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(41, 128, 185, 0.2)) !important;
   color: #5dade2 !important;
+}
+
+/* 顶部状态下的暗色模式也去除白块感 */
+body.dark.toc-at-top #toc {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* 9. 响应式设计 */

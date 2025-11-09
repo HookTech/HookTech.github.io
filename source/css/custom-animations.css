@@ -185,17 +185,7 @@ h2[id*="技能专长"],
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* 滚动指示器 */
-.scroll-indicator {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background: var(--accent-600);
-  z-index: 9999;
-  transition: width 0.1s ease;
-}
+/* 滚动指示器样式已移除 */
 
 /* 响应式设计 */
 @media (max-width: 768px) {

@@ -12,27 +12,31 @@
         initScrollEffects();
         initSkillBars();
         initCounters();
-        initScrollIndicator();
         initParallax();
         initTypingEffect();
     });
 
     /**
      * 初始化动画效果
+     * 优化: 仅在类名不存在时添加(支持服务端预渲染)
      */
     function initAnimations() {
-        // 为文章卡片添加渐入动画
+        // 为文章卡片添加渐入动画(仅当未预渲染时)
         const postCards = document.querySelectorAll('.post-item, .post-card, .card');
         postCards.forEach((card, index) => {
-            card.classList.add('fade-in');
-            card.style.animationDelay = `${index * 0.1}s`;
+            if (!card.classList.contains('fade-in')) {
+                card.classList.add('fade-in');
+                card.style.animationDelay = `${index * 0.1}s`;
+            }
         });
 
-        // 为导航菜单项添加动画
+        // 为导航菜单项添加动画(仅当未预渲染时)
         const navItems = document.querySelectorAll('.navbar .menu-item');
         navItems.forEach((item, index) => {
-            item.classList.add('fade-in');
-            item.style.animationDelay = `${index * 0.1}s`;
+            if (!item.classList.contains('fade-in')) {
+                item.classList.add('fade-in');
+                item.style.animationDelay = `${index * 0.1}s`;
+            }
         });
     }
 
@@ -129,22 +133,7 @@
         });
     }
 
-    /**
-     * 滚动进度指示器
-     */
-    function initScrollIndicator() {
-        // 创建滚动指示器
-        const indicator = document.createElement('div');
-        indicator.className = 'scroll-indicator';
-        document.body.appendChild(indicator);
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const percentage = (scrolled / maxHeight) * 100;
-            indicator.style.width = percentage + '%';
-        });
-    }
+    // 已移除：滚动进度指示器（根据需求取消该设计）
 
     /**
      * 视差效果
@@ -192,10 +181,23 @@
 
     /**
      * 图片懒加载增强
+     * 优化: 使用原生loading="lazy"属性作为后备方案
      */
     function initLazyLoading() {
+        // 优先使用浏览器原生懒加载
+        if ('loading' in HTMLImageElement.prototype) {
+            // 浏览器支持原生懒加载，只需处理data-src到src的转换
+            const images = document.querySelectorAll('img[data-src][loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.getAttribute('data-src');
+                img.removeAttribute('data-src');
+            });
+            return;
+        }
+
+        // 降级方案: 使用IntersectionObserver
         const images = document.querySelectorAll('img[data-src]');
-        
+
         if (images.length === 0) return;
 
         const imageObserver = new IntersectionObserver((entries) => {

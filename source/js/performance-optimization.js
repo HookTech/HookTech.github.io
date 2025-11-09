@@ -115,13 +115,7 @@
                 }
             }
 
-            // 更新滚动进度条
-            const indicator = document.querySelector('.scroll-indicator');
-            if (indicator) {
-                const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const percentage = (scrolled / maxHeight) * 100;
-                indicator.style.width = percentage + '%';
-            }
+            // 滚动进度条逻辑已移除
         }, 16); // 60fps
 
         window.addEventListener('scroll', scrollHandler, { passive: true });

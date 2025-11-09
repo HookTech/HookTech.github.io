@@ -9,6 +9,8 @@
     // 等待DOM加载完成
     document.addEventListener('DOMContentLoaded', function() {
         enhanceTOC();
+        // 初始化顶部状态标记，避免页面顶端时 TOC 出现明显白块
+        initTopStateFlag();
     });
 
     function enhanceTOC() {
@@ -162,9 +164,39 @@
         }
         
         window.addEventListener('scroll', requestTick, { passive: true });
-        
+
         // 初始检查
         updateActiveSection();
+    }
+
+    /**
+     * 页面顶部状态标记：在滚动接近顶部时，为 body 添加 'toc-at-top'
+     * 用于配合 CSS 去除 TOC 白块感
+     */
+    function initTopStateFlag() {
+        const body = document.body;
+        let ticking = false;
+
+        const updateFlag = () => {
+            const top = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+            if (top < 40) {
+                body.classList.add('toc-at-top');
+            } else {
+                body.classList.remove('toc-at-top');
+            }
+            ticking = false;
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateFlag);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        // 初始状态
+        updateFlag();
     }
 
     /**

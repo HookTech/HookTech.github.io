@@ -44,8 +44,7 @@ button,
   background: var(--accent-700) !important;
 }
 
-/* Scroll indicator unify */
-.scroll-indicator { height: 3px; background: var(--accent-600); }
+/* Scroll indicator styles removed */
 
 /* Category/tag pills unify */
 .category-tag, .tag-item {
@@ -76,4 +75,28 @@ html.fonts-loaded body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
   text-rendering: optimizeLegibility;
   font-variant-ligatures: common-ligatures contextual;
+}
+
+/* Navbar contrast fixes: when overlay (transparent) use white text */
+.navbar.scrolling-navbar:not(.top-nav-collapse):not(.navbar-col-show):not(.dropdown-collapse) {
+  background: transparent !important;
+}
+.navbar.scrolling-navbar:not(.top-nav-collapse):not(.navbar-col-show):not(.dropdown-collapse) .navbar-brand,
+.navbar.scrolling-navbar:not(.top-nav-collapse):not(.navbar-col-show):not(.dropdown-collapse) .nav-link,
+.navbar.scrolling-navbar:not(.top-nav-collapse):not(.navbar-col-show):not(.dropdown-collapse) .navbar-toggler .animated-icon span {
+  color: #fff !important;
+  opacity: 1 !important;
+  background-color: #fff !important;
+}
+.navbar.scrolling-navbar:not(.top-nav-collapse):not(.navbar-col-show):not(.dropdown-collapse) .nav-link:hover {
+  color: #fff !important;
+}
+.navbar.scrolling-navbar:not(.top-nav-collapse):not(.navbar-col-show):not(.dropdown-collapse) .dropdown-menu {
+  background-color: rgba(0,0,0,0.45) !important;
+}
+.navbar.scrolling-navbar:not(.top-nav-collapse):not(.navbar-col-show):not(.dropdown-collapse) .dropdown-item {
+  color: #fff !important;
+}
+.navbar.scrolling-navbar:not(.top-nav-collapse):not(.navbar-col-show):not(.dropdown-collapse) .dropdown-item:hover {
+  background-color: rgba(255,255,255,0.08) !important;
 }
