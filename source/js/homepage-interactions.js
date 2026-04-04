@@ -1,6 +1,7 @@
 /**
  * 首页交互效果 - Homepage Interactions
  * 为首页添加更多动态交互效果
+ * v2.0 - 移除鼠标跟随动画
  */
 
 (function() {
@@ -257,51 +258,6 @@
             img.classList.add('lazy');
             imageObserver.observe(img);
         });
-    }
-
-    /**
-     * 鼠标跟随效果增强
-     */
-    function initMouseFollower() {
-        const follower = document.createElement('div');
-        follower.className = 'mouse-follower-enhanced';
-        follower.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(255,107,107,0.6) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            display: none;
-        `;
-        document.body.appendChild(follower);
-
-        let mouseX = 0, mouseY = 0;
-        let followerX = 0, followerY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            follower.style.display = 'block';
-        });
-
-        document.addEventListener('mouseleave', () => {
-            follower.style.display = 'none';
-        });
-
-        // 平滑跟随动画
-        function animateFollower() {
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
-            
-            follower.style.left = followerX - 10 + 'px';
-            follower.style.top = followerY - 10 + 'px';
-            
-            requestAnimationFrame(animateFollower);
-        }
-        animateFollower();
     }
 
     /**

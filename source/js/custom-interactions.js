@@ -1,6 +1,7 @@
 /**
  * 自定义交互效果 - Custom Interactions
  * 为philo的小站添加动态交互效果
+ * v2.0 - 移除鼠标跟随动画
  */
 
 (function() {
@@ -237,36 +238,6 @@
     }
 
     /**
-     * 鼠标跟随效果
-     */
-    function initMouseFollower() {
-        const follower = document.createElement('div');
-        follower.className = 'mouse-follower';
-        follower.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(255,107,107,0.8) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            display: none;
-        `;
-        document.body.appendChild(follower);
-
-        document.addEventListener('mousemove', (e) => {
-            follower.style.display = 'block';
-            follower.style.left = e.clientX - 10 + 'px';
-            follower.style.top = e.clientY - 10 + 'px';
-        });
-
-        document.addEventListener('mouseleave', () => {
-            follower.style.display = 'none';
-        });
-    }
-
-    /**
      * 页面加载动画
      */
     function initPageLoader() {
@@ -327,12 +298,10 @@
     // 延迟初始化非关键效果
     if ('requestIdleCallback' in window) {
         requestIdleCallback(() => {
-            initMouseFollower();
             initPageLoader();
         });
     } else {
         setTimeout(() => {
-            initMouseFollower();
             initPageLoader();
         }, 1000);
     }

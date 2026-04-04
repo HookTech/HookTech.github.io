@@ -93,4 +93,19 @@ hexo.extend.filter.register('after_post_render', function(data) {
   return data;
 });
 
+// 带版本号的 JS 加载辅助函数
+hexo.extend.helper.register('versioned_js', function(path) {
+  const version = hexo.config.version || Date.now();
+  // 确保路径以 / 开头
+  const normalizedPath = path.startsWith('/') ? path : '/' + path;
+  return `<script src="${normalizedPath}?v=${version}" defer></script>`;
+});
+
+// 带版本号的 CSS 加载辅助函数
+hexo.extend.helper.register('versioned_css', function(path) {
+  const version = hexo.config.version || Date.now();
+  const normalizedPath = path.startsWith('/') ? path : '/' + path;
+  return `<link rel="stylesheet" href="${normalizedPath}?v=${version}">`;
+});
+
 console.log('Hexo静态增强脚本已加载');
