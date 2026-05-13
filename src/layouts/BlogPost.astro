@@ -53,6 +53,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.last-updated-on {
 				font-style: italic;
 			}
+			/* 略小于全站 body：主标题仍用全局比例，正文更易读 */
+			.post-body {
+				font-size: 15px;
+				line-height: 1.62;
+			}
+			@media (max-width: 720px) {
+				.post-body {
+					font-size: 14px;
+					line-height: 1.6;
+				}
+			}
 		</style>
 	</head>
 
@@ -78,7 +89,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 						<h1>{title}</h1>
 						<hr />
 					</div>
-					<slot />
+					<div class="post-body">
+						<slot />
+					</div>
 				</div>
 			</article>
 		</main>

@@ -14,6 +14,9 @@
 	--gray-light: 229, 233, 240;
 	--gray-dark: 34, 41, 57;
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	/** 正文基础字号（略小于 Bear 默认，便于中英文长文阅读） */
+	--body-font-size: 18px;
+	--body-line-height: 1.65;
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
@@ -28,8 +31,8 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
+	font-size: var(--body-font-size);
+	line-height: var(--body-line-height);
 }
 main {
 	width: 720px;
@@ -48,19 +51,19 @@ h6 {
 	line-height: 1.2;
 }
 h1 {
-	font-size: 3.052em;
+	font-size: 2.6em;
 }
 h2 {
-	font-size: 2.441em;
+	font-size: 2.08em;
 }
 h3 {
-	font-size: 1.953em;
+	font-size: 1.66em;
 }
 h4 {
-	font-size: 1.563em;
+	font-size: 1.33em;
 }
 h5 {
-	font-size: 1.25em;
+	font-size: 1.06em;
 }
 strong,
 b {
@@ -109,7 +112,7 @@ blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
 	margin: 0;
-	font-size: 1.333em;
+	font-size: 1.15em;
 }
 hr {
 	border: none;
@@ -117,7 +120,7 @@ hr {
 }
 @media (max-width: 720px) {
 	body {
-		font-size: 18px;
+		--body-font-size: 17px;
 	}
 	main {
 		padding: 1em;
