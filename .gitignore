@@ -32,3 +32,4 @@ _legacy_hexo/
 .npm-cache/
 .playwright-mcp/
 .tmp_loki/
+.obsidian/
