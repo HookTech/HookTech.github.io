@@ -1,0 +1,31 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BlogPost from '../../../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => {
+		const parts = post.id.split('/');
+		if (parts.length < 4) {
+			throw new Error(
+				`Blog post id must be year/month/day/slug (got "${post.id}" for "${post.data.title}")`,
+			);
+		}
+		const [year, month, day, ...titleParts] = parts;
+		const title = titleParts.join('/');
+		return {
+			params: { year, month, day, title },
+			props: { post },
+		};
+	});
+}
+
+type Props = { post: CollectionEntry<'blog'> };
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost {...post.data}>
+	<Content />
+</BlogPost>

@@ -1,0 +1,82 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: calc(100% - 4em);
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 2em 0;
+			}
+			h2 {
+				margin-top: 2rem;
+				font-size: 1.25rem;
+			}
+			.post-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.post-list li {
+				padding: 0.75rem 0;
+				border-bottom: 1px solid rgb(var(--gray-light));
+			}
+			.post-list a {
+				text-decoration: none;
+				color: rgb(var(--black));
+			}
+			.post-list a:hover {
+				color: rgb(var(--accent));
+			}
+			.meta {
+				margin: 0.35rem 0 0;
+				color: rgb(var(--gray));
+				font-size: 0.9rem;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<h1>{SITE_TITLE}</h1>
+				<p>{SITE_DESCRIPTION}</p>
+			</section>
+			<section>
+				<h2>最近更新</h2>
+				<ul class="post-list">
+					{
+						posts.map((post) => (
+							<li>
+								<a href={`/${post.id}/`}>
+									<strong>{post.data.title}</strong>
+									<p class="meta">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+				<p>
+					<a href="/blog/">查看全部文章</a>
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

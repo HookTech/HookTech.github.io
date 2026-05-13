@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+
+const description = '关于 philo的小站与个人技术博客说明。';
+---
+
+<Layout title="关于" description={description} pubDate={new Date('2025-01-01')}>
+	<p>{description}</p>
+	<p>
+		本站由 <a href="https://astro.build/">Astro</a> 构建，源码托管于
+		<a href="https://github.com/HookTech/HookTech.github.io">GitHub</a>。
+	</p>
+</Layout>
