@@ -1,45 +1,38 @@
 @import 'katex/dist/katex.min.css';
 
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
-
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	/** 正文基础字号（略小于 Bear 默认，便于中英文长文阅读） */
-	--body-font-size: 18px;
-	--body-line-height: 1.65;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--cream: #faf8f5;
+	--white: #ffffff;
+	--black: #1a1a1a;
+	--gray: #5a5a5a;
+	--sage: #5a8f7b;
+	--terracotta: #d4734a;
+	--code-bg: #f0ede8;
+	--quote-bg: #f5f2ed;
+	--box-shadow: 3px 3px 0 rgba(26, 26, 26, 0.08);
+	--box-shadow-hover: 4px 4px 0 rgba(90, 143, 123, 0.15);
 }
+
 body {
-	font-family: var(--font-atkinson);
+	font-family: 'Source Serif 4', Georgia, 'Noto Serif SC', serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
+	background: var(--cream);
+	color: var(--black);
+	font-size: 18px;
+	line-height: 1.7;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: var(--body-font-size);
-	line-height: var(--body-line-height);
 }
+
 main {
 	width: 720px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
 }
+
 h1,
 h2,
 h3,
@@ -47,83 +40,206 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: var(--black);
+	font-weight: 600;
 	line-height: 1.2;
 }
+
 h1 {
 	font-size: 2.6em;
 }
+
 h2 {
 	font-size: 2.08em;
 }
+
 h3 {
 	font-size: 1.66em;
 }
+
 h4 {
 	font-size: 1.33em;
 }
+
 h5 {
 	font-size: 1.06em;
 }
+
 strong,
 b {
 	font-weight: 700;
 }
+
 a {
-	color: var(--accent);
+	color: var(--sage);
+	text-decoration: none;
+	position: relative;
 }
+
 a:hover {
-	color: var(--accent);
+	color: var(--terracotta);
 }
+
 p {
 	margin-bottom: 1em;
 }
+
 .prose p {
 	margin-bottom: 2em;
 }
+
 textarea {
 	width: 100%;
 	font-size: 16px;
 }
+
 input {
 	font-size: 16px;
 }
+
 table {
 	width: 100%;
 }
+
 img {
 	max-width: 100%;
 	height: auto;
 	border-radius: 8px;
 }
+
 code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
+	padding: 0.15em 0.4em;
+	background: var(--code-bg);
+	border-radius: 3px;
+	font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
 }
+
 pre {
-	padding: 1.5em;
-	border-radius: 8px;
+	padding: 1.2em;
+	border: 2px solid var(--black);
+	border-radius: 4px 10px 6px 8px;
+	background: var(--code-bg);
+	box-shadow: var(--box-shadow);
+	font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+	font-size: 0.85em;
+	overflow-x: auto;
 }
+
 pre > code {
 	all: unset;
 }
+
 blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.15em;
+	margin: 1.5em 0;
+	padding: 1em 1.5em;
+	background: var(--quote-bg);
+	border-left: 4px solid var(--black);
+	border-radius: 0 8px 8px 0;
+	font-style: italic;
+	position: relative;
 }
+
+blockquote::before {
+	content: '';
+	position: absolute;
+	left: -4px;
+	top: 0;
+	bottom: 0;
+	width: 4px;
+	background: var(--black);
+	border-radius: 0 4px 4px 0;
+	transform: rotate(-0.5deg);
+	transform-origin: center;
+}
+
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	height: 4px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 4' preserveAspectRatio='none'%3E%3Cpath d='M0,2 Q20,0 40,2 T80,2 T120,2 T160,2 T200,1.5 T240,2.5 T280,2 T320,1.5 T360,2.5 T400,2' stroke='%231a1a1a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin: 2em 0;
 }
+
+.sketchy-card {
+	background: var(--white);
+	padding: 1.5em;
+	border: 2px solid var(--black);
+	border-radius: 2px 8px 4px 12px;
+	box-shadow: var(--box-shadow);
+	transition: all 0.3s ease;
+	position: relative;
+}
+
+.sketchy-card::before {
+	content: '';
+	position: absolute;
+	top: -3px;
+	left: -3px;
+	right: 3px;
+	bottom: 3px;
+	border: 2px solid var(--black);
+	border-radius: 3px 10px 6px 14px;
+	opacity: 0.3;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.sketchy-card:hover {
+	border-color: var(--sage);
+	box-shadow: var(--box-shadow-hover);
+}
+
+.sketchy-divider {
+	display: block;
+	width: 100%;
+	height: 4px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 4' preserveAspectRatio='none'%3E%3Cpath d='M0,2 Q20,0 40,2 T80,2 T120,2 T160,2 T200,1.5 T240,2.5 T280,2 T320,1.5 T360,2.5 T400,2' stroke='%231a1a1a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	border: none;
+	margin: 2em 0;
+}
+
+.section-title {
+	display: flex;
+	align-items: center;
+	gap: 0.75em;
+}
+
+.section-title::after {
+	content: '';
+	flex: 1;
+	height: 3px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 3'%3E%3Cpath d='M0,1.5 Q15,0.5 30,1.5 T60,1.5 T90,1.5 T120,1.5 T150,1.5 T180,1.5 T200,1.5' stroke='%235a5a5a' stroke-width='1' fill='none' stroke-linecap='round' opacity='0.4'/%3E%3C/svg%3E");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.post-body {
+	font-size: 16px;
+	line-height: 1.75;
+}
+
 @media (max-width: 720px) {
 	body {
-		--body-font-size: 17px;
+		font-size: 17px;
 	}
+
 	main {
 		padding: 1em;
+	}
+
+	h1 {
+		font-size: 2em;
+	}
+
+	h2 {
+		font-size: 1.7em;
+	}
+
+	.post-body {
+		font-size: 15px;
 	}
 }
 
@@ -135,12 +251,8 @@ hr {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
 	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
