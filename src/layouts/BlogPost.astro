@@ -16,9 +16,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
-				width: calc(100% - 2em);
+				width: 100%;
 				max-width: 100%;
 				margin: 0;
+				padding: 0;
 			}
 			.hero-image {
 				width: 100%;
@@ -29,39 +30,57 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				border-radius: 12px;
 				box-shadow: var(--box-shadow);
 			}
+			.paper {
+				background: var(--white);
+				box-shadow: 0 2px 12px rgba(26, 26, 26, 0.06);
+				border-radius: 2px;
+				max-width: 780px;
+				margin: 0 auto;
+				padding: 2em;
+			}
 			.prose {
 				width: 720px;
-				max-width: calc(100% - 2em);
+				max-width: 100%;
 				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
+				padding: 1em 0;
+				color: var(--black);
 				overflow-x: auto;
 			}
 			.title {
-				margin-bottom: 1em;
+				margin-bottom: 1.5em;
 				padding: 1em 0;
 				text-align: center;
 				line-height: 1;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
+				font-size: 2.2em;
+				font-weight: 700;
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				color: var(--gray);
+				font-size: 0.9em;
 			}
 			.last-updated-on {
 				font-style: italic;
+				color: var(--gray);
+				font-size: 0.85em;
 			}
-			/* 略小于全站 body：主标题仍用全局比例，正文更易读 */
 			.post-body {
-				font-size: 15px;
-				line-height: 1.62;
+				font-size: 16px;
+				line-height: 1.75;
 			}
 			@media (max-width: 720px) {
+				.paper {
+					padding: 1em;
+					border-radius: 0;
+				}
+				.title h1 {
+					font-size: 1.7em;
+				}
 				.post-body {
-					font-size: 14px;
-					line-height: 1.6;
+					font-size: 15px;
 				}
 			}
 		</style>
@@ -74,23 +93,25 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				<div class="hero-image">
 					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
 				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
+				<div class="paper">
+					<div class="prose">
+						<div class="title">
+							<div class="date">
+								<FormattedDate date={pubDate} />
+								{
+									updatedDate && (
+										<div class="last-updated-on">
+											Last updated on <FormattedDate date={updatedDate} />
+										</div>
+									)
+								}
+							</div>
+							<h1>{title}</h1>
+							<div class="sketchy-divider"></div>
 						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<div class="post-body">
-						<slot />
+						<div class="post-body">
+							<slot />
+						</div>
 					</div>
 				</div>
 			</article>
